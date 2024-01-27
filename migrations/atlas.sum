@@ -1,3 +1,4 @@
-h1:7aLXFfsX4lYy5G8q5mU2WdmzqG/x4zCeDLRT5YethI4=
+h1:rYSEWftcw0awa+ArsQueKP7w5LtDrJamSGQt+N6uI68=
 20240127140416_create_users_and_blog_posts.sql h1:B7YfEP3TLB89L/MsMWAb5HKd27tBB7GxP6ro46VWXOU=
-20240127151537_add_summary_column.sql h1:9RQ11kJj3LMdVIDdcxf01ip5U6+beg82CgC7czznhok=
+20240127151537_add_summary_column.sql h1:uMExn6omb3XzRByJWAHCA6bZ1erkxkp46wIUlzmN+lc=
+20240127214750_summary_non_nullable.sql h1:Bk1LEUYKq4w0zQQEFdbH+45bi6g5Ah4Q3GPa1JQT4ZY=

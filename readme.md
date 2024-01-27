@@ -8,3 +8,6 @@
 
 # Install Gorm
 `go get -u gorm.io/gorm`
+
+NOTE: We need to run `atlas migrate hash` whenever we edit a migration file (we removed the not null when we first 
+added the summary column)
