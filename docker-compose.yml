@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - devdb
+    environment:
+      GOOSE_DRIVER: "postgres"
+      GOOSE_DBSTRING: "user=tdb host=db password=tdb port=5432 dbname=tdb"
+
+  db:
+    image: postgres:15.3
+    container_name: db
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=tdb
+      - POSTGRES_DB=tdb
+      - POSTGRES_USER=tdb
+
+  devdb:
+    image: postgres:15.3
+    container_name: devdb
+    environment:
+      - POSTGRES_PASSWORD=tdb
+      - POSTGRES_DB=tdb
+      - POSTGRES_USER=tdb
