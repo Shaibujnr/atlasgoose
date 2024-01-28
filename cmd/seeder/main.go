@@ -42,9 +42,9 @@ func main() {
 	}
 	db.Transaction(func(tx *gorm.DB) error {
 		for u := 0; u < 5; u++ {
-			firstName := fmt.Sprintf("John%d", u)
-			lastName := fmt.Sprintf("Doe%d", u)
-			email := fmt.Sprintf("johndoe%d@test.com", u)
+			firstName := gofakeit.FirstName()
+			lastName := gofakeit.LastName()
+			email := gofakeit.Email()
 			user, err := createUser(tx, firstName, lastName, email)
 			if err != nil {
 				panic(err)
