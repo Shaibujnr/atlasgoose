@@ -12,6 +12,7 @@ require (
 
 require (
 	ariga.io/atlas-go-sdk v0.2.3 // indirect
+	github.com/brianvoe/gofakeit/v6 v6.28.0 // indirect
 	github.com/cockroachdb/apd v1.1.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/gofrs/uuid v4.4.0+incompatible // indirect

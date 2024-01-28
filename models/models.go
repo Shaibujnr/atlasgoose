@@ -13,7 +13,7 @@ type User struct {
 type BlogPost struct {
 	gorm.Model
 	Title   string `gorm:"column:title;not null;unique"`
-	Summary string `gorm:"column:summary;not null"`
+	Tags    string `gorm:"column:tags;not null"`
 	Content string `gorm:"column:content;not null"`
 	UserID  uint   `gorm:"column:user_id;not null;"`
 }

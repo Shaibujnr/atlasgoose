@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Shaibujnr/atlasgoose/models"
+	"github.com/brianvoe/gofakeit/v6"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -49,8 +50,8 @@ func main() {
 				panic(err)
 			}
 			for i := 0; i < 10; i++ {
-				title := fmt.Sprintf("Title%d-U%d", i, u)
-				content := fmt.Sprintf("Content%d", i)
+				title := fmt.Sprintf("Title%d-%s", i, gofakeit.SentenceSimple())
+				content := gofakeit.Sentence(500)
 				_, err := addBlogPost(tx, user.ID, title, content)
 				if err != nil {
 					panic(err)

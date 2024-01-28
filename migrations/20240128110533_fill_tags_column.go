@@ -4,16 +4,33 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"fmt"
 	"github.com/pressly/goose/v3"
 	"log/slog"
+	"strings"
+)
+
+var (
+	SUPPORTED_TAGS = []string{"golang", "food", "science", "animal", "dog", "cat", "tech", "life", "fun", "book"}
 )
 
 func init() {
-	goose.AddMigrationContext(upFillSummaryColumn, downFillSummaryColumn)
+	goose.AddMigrationContext(upFillTagsColumn, downFillTagsColumn)
 }
 
-func upFillSummaryColumn(ctx context.Context, tx *sql.Tx) error {
+func getTags(content string) string {
+	result := "basic"
+	words := strings.Split(content, " ")
+	for _, word := range words {
+		for _, tag := range SUPPORTED_TAGS {
+			if strings.Contains(word, tag) {
+				result += " " + tag
+			}
+		}
+	}
+	return result
+}
+
+func upFillTagsColumn(ctx context.Context, tx *sql.Tx) error {
 	// This code is executed when the migration is applied.
 
 	// create a cursor for fetching the blog posts
@@ -42,8 +59,8 @@ func upFillSummaryColumn(ctx context.Context, tx *sql.Tx) error {
 			slog.Error("Fetching next row failed", "err", err.Error())
 			panic(err)
 		}
-		summary := fmt.Sprintf("%s-Summary", content[:2])
-		_, err = tx.ExecContext(ctx, "UPDATE blog_posts SET summary=$1 WHERE id=$2;", summary, id)
+		tags := getTags(content)
+		_, err = tx.ExecContext(ctx, "UPDATE blog_posts SET tags=$1 WHERE id=$2;", tags, id)
 		if err != nil {
 			slog.Error("Unable to update row", "err", err.Error())
 			panic(err)
@@ -52,12 +69,7 @@ func upFillSummaryColumn(ctx context.Context, tx *sql.Tx) error {
 	return nil
 }
 
-func downFillSummaryColumn(ctx context.Context, tx *sql.Tx) error {
+func downFillTagsColumn(ctx context.Context, tx *sql.Tx) error {
 	// This code is executed when the migration is rolled back.
-	_, err := tx.ExecContext(ctx, "UPDATE blog_posts SET summary=NULL")
-	if err != nil {
-		slog.Error("Unable to update row", "err", err.Error())
-		panic(err)
-	}
 	return nil
 }
