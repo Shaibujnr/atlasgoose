@@ -9,7 +9,7 @@ database schema and data migration.
 * We use Goose to generate `Go` based migration files for data migrations
 * We build a custom `Goose` binary to support `Go` based migrations
 
-You can read the article on this project [here](https://volomn.comblog/database-migration-using-atlas-and-goose)
+You can read the article on this project [here](https://volomn.com/blog/database-migration-using-atlas-and-goose)
 
 ## PreRequisites
 * Golang 1.23.1
