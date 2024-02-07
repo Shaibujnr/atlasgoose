@@ -1,13 +1,21 @@
 # Database Migration Using Atlasgo and Goose
 
+This project demonstrates how to combine atlas and goose for 
+database schema and data migration.
 
-# PreRequisites
-* Atlasgo (brew install ariga/tap/atlas on Macos version atlas version v0.18.1-c64cfd1-canary)
+* We use Gorm to define database tables
+* We use Atlas to automatically generate a schema migration plan
+* We use Goose to apply our migration files 
+* We use Goose to generate `Go` based migration files for data migrations
+* We build a custom `Goose` binary to support `Go` based migrations
+
+You can read the article on this project [here](https://volomn.comblog/database-migration-using-atlas-and-goose)
+
+## PreRequisites
+* Golang 1.23.1
 * Docker
 * Docker Compose
 
-# Install Gorm
-`go get -u gorm.io/gorm`
-
-NOTE: We need to run `atlas migrate hash` whenever we edit a migration file (we removed the not null when we first 
-added the summary column)
+## Setup
+1. Clone this repository
+2. Run `go mod tidy`
